@@ -17,6 +17,21 @@ const createButton = (pageNumber, text, isActive) => {
   </button>`;
 };
 
+const Paginate = (first, prev, actual, next, last, limit) => {
+  return [
+    // Primer pagina
+    createButton(first, "first", 0 === actual),
+    // Pagina anterior
+    createButton(prev, "previous", 0 === actual),
+    // Pagina actual
+    createButton(0, actual + 1, true),
+    // Pagina siguiente
+    createButton(next, "next", limit - 1 === actual),
+    // Ultima pagina
+    createButton(last, "last", actual === last),
+  ];
+};
+
 const fetchAll = (page = 0) => {
   fetch(`http://localhost:8080/api/product/list/${page}`)
     .then((res) => res.json())
@@ -38,22 +53,22 @@ const fetchAll = (page = 0) => {
 
       const { actualPage, totalProducts, limit } = data.paginate;
 
-      // calculamos la cantidad de botones necesarios para paginar nuestra pagina
-      // utilizamos Math.ceil para redondear el resultado hacia arriba 2.1 = 3
-      let cantButtons = Math.ceil(totalProducts / limit);
+      let buttonLimit = Math.ceil(totalProducts / limit);
 
-      let previousPage = 0;
-      if (actualPage > 1) previousPage = actualPage - 1;
+      let firstPage = 0;
+      let previousPage = actualPage > 1 ? actualPage - 1 : 0;
 
-      let nextPage = 0;
-      if (actualPage * limit < totalProducts) nextPage = actualPage + 1;
+      let nextPage =
+        actualPage * limit < totalProducts ? actualPage + 1 : buttonLimit - 1;
+      let lastPage = buttonLimit - 1;
 
-      let buttons = [];
-      // First Page
-      buttons.push(createButton(previousPage, "previous", 0 === actualPage));
-      buttons.push(createButton(0, actualPage + 1, true));
-      buttons.push(
-        createButton(nextPage, "next", cantButtons - 1 === actualPage)
+      let buttons = Paginate(
+        firstPage,
+        previousPage,
+        actualPage,
+        nextPage,
+        lastPage,
+        buttonLimit
       );
 
       document.querySelector("#paginate").innerHTML = buttons.join("");

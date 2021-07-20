@@ -14,7 +14,7 @@ Router.post("/", (req, res) => {
 Router.get("/list/:id?", async (req, res) => {
   const page = parseInt(req.params.id);
 
-  const productLimit = 1;
+  const productLimit = 5;
 
   const products = await Product.find()
     .skip(page ? page * productLimit : 0)
