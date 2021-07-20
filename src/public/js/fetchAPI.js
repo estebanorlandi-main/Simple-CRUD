@@ -1,20 +1,20 @@
 const createRow = ({ name, description, stock, price }) => {
-  return `
-    <tr>
-        <td>    
-            ${name}
-        </td>
-        <td>    
-            ${description}
-        </td>
-        <td>    
-            ${stock}
-        </td>
-        <td>    
-            ${price}
-        </td>
-    </tr>    
-    `;
+  return `<tr>
+        <td>${name}</td>
+        <td>${description}</td>
+        <td>${stock}</td>
+        <td>${price}</td>
+    </tr>`;
+};
+
+const createButton = (pageNumber, isActive) => {
+  if (isActive) {
+    return `<button class="btn" disabled>${pageNumber + 1}</button>`;
+  }
+
+  return `<button class="btn" onclick="fetchAll(${pageNumber})">
+  ${pageNumber + 1}
+  </button>`;
 };
 
 const fetchAll = (page = 0) => {
@@ -35,13 +35,20 @@ const fetchAll = (page = 0) => {
 
       // se busca el id products para imprimir las columnas
       document.querySelector("#products").innerHTML = rows;
+
+      const { actualPage, numOfProducts } = data.paginate;
+
+      // calculamos la cantidad de botones necesarios para paginar nuestra pagina
+      // utilizamos Math.ceil para redondear el resultado hacia arriba 2.1 = 3
+      const cantButtons = Math.ceil(numOfProducts / 5);
+
+      let buttons = [];
+      for (let i = 0; i < cantButtons; i++) {
+        buttons.push(createButton(i, i === actualPage));
+      }
+      document.querySelector("#paginate").innerHTML = buttons.join("");
     });
 };
 
+// Se llama apenas carga la pagina
 fetchAll();
-
-document.querySelectorAll(".page-btn").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    fetchAll(e.target.innerHTML - 1);
-  });
-});

@@ -5,29 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="http://localhost:8080/" />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+    <link rel="stylesheet" href="css/index.css" />
     <title>CRUD</title>
   </head>
   <body>
     <div id="app">
-      <table style="width: 100%">
-        <thead style="text-align: left">
-          <th>Name</th>
-          <th>Description</th>
-          <th>Stock</th>
-          <th>Price</th>
-        </thead>
-        <tbody id="products"></tbody>
-      </table>
+      <div class="container">
+        <table style="width: 100%">
+          <thead style="text-align: left">
+            <th>Name</th>
+            <th>Description</th>
+            <th>Stock</th>
+            <th>Price</th>
+          </thead>
+          <tbody id="products"></tbody>
+        </table>
+        <div id="paginate" class="paginate"></div>
+      </div>
     </div>
-    <button class="page-btn">1</button>
-    <button class="page-btn">2</button>
-    <button class="page-btn">3</button>
+
     <script src="js/fetchAPI.js"></script>
   </body>
 </html>

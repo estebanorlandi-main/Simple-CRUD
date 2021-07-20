@@ -12,13 +12,20 @@ Router.post("/", (req, res) => {
 });
 
 Router.get("/list/:id?", async (req, res) => {
-  const page = req.params.id;
+  const page = parseInt(req.params.id);
 
   const products = await Product.find()
-    .skip(page ? parseInt(page) * 5 : 0)
+    .skip(page ? page * 5 : 0)
     .limit(5);
 
-  return res.json({ products: products });
+  const countProducts = await Product.find();
+
+  const paginate = {
+    actualPage: page,
+    numOfProducts: countProducts.length,
+  };
+
+  return res.json({ products: products, paginate });
 });
 
 Router.get("/:id", async (req, res) => {
