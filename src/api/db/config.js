@@ -1,3 +1,3 @@
-module.exoprts = {
-  URI: "mongodb://localhost:27017/mern-crud",
+module.exports = {
+  URI: "mongodb://localhost:27017/Product-CRUD",
 };

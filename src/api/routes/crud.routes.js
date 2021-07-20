@@ -1,26 +1,40 @@
 const Router = require("express").Router();
+const Product = require("../Schemas/Product");
 
-Router.get("/create", (req, res) => {
-  const data = "Create";
-  res.json({ data });
+Router.post("/", (req, res) => {
+  const { name, description, price, stock } = req.body;
+
+  const newProduct = new Product({ name, description, price, stock });
+
+  newProduct.save();
+
+  return res.json({ status: "saved" });
 });
 
-Router.get("/all", (req, res) => {
-  const data = "All";
-  res.json({ data });
+Router.get("/list/:id?", async (req, res) => {
+  const page = req.params.id;
+
+  const products = await Product.find()
+    .skip(page ? parseInt(page) * 5 : 0)
+    .limit(5);
+
+  return res.json({ products: products });
 });
 
-Router.get("/one", (req, res) => {
-  const data = "One";
-  res.json({ data });
+Router.get("/:id", async (req, res) => {
+  const _id = req.params.id;
+
+  const products = await Product.find({ _id });
+
+  return res.json({ products: products });
 });
 
-Router.get("/update", (req, res) => {
+Router.put("/update", (req, res) => {
   const data = "Update";
   res.json({ data });
 });
 
-Router.get("/delete", (req, res) => {
+Router.delete("/delete", (req, res) => {
   const data = "Delete";
   res.json({ data });
 });
