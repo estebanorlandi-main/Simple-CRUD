@@ -63,10 +63,10 @@ td {
   cursor: pointer;
   background-color: hsl(229, 60%, 67%);
   transition: all 0.25s;
+  color: #f0f0f0;
 }
 .btn:not(:disabled):hover {
   transform: translate(0, -5px);
-  background-color: hsl(229, 60%, 75%);
 }
 .btn:disabled {
   opacity: 0.75;
