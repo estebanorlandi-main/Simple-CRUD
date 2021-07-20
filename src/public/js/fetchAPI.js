@@ -7,13 +7,13 @@ const createRow = ({ name, description, stock, price }) => {
     </tr>`;
 };
 
-const createButton = (pageNumber, isActive) => {
+const createButton = (pageNumber, text, isActive) => {
   if (isActive) {
-    return `<button class="btn" disabled>${pageNumber + 1}</button>`;
+    return `<button class="btn" disabled>${text}</button>`;
   }
 
   return `<button class="btn" onclick="fetchAll(${pageNumber})">
-  ${pageNumber + 1}
+  ${text}
   </button>`;
 };
 
@@ -36,16 +36,30 @@ const fetchAll = (page = 0) => {
       // se busca el id products para imprimir las columnas
       document.querySelector("#products").innerHTML = rows;
 
-      const { actualPage, numOfProducts } = data.paginate;
+      const { actualPage, totalProducts, limit } = data.paginate;
 
       // calculamos la cantidad de botones necesarios para paginar nuestra pagina
       // utilizamos Math.ceil para redondear el resultado hacia arriba 2.1 = 3
-      const cantButtons = Math.ceil(numOfProducts / 5);
+      let cantButtons = Math.ceil(totalProducts / limit);
+      if (cantButtons > 5) cantButtons = 5;
+
+      let startPoint = 0;
+      if (actualPage > 0) startPoint = actualPage;
+
+      let endPoint = startPoint + 5;
+      //   if (startPoint + 5 - 2 > 0) startPoint = actualPage - 2;
 
       let buttons = [];
-      for (let i = 0; i < cantButtons; i++) {
-        buttons.push(createButton(i, i === actualPage));
+      // First Page
+      buttons.push(createButton(0, "first", 0 === actualPage));
+      for (let i = startPoint; i < endPoint; i++) {
+        buttons.push(createButton(i, i + 1, i === actualPage));
       }
+      // Last Page
+      buttons.push(
+        createButton(cantButtons - 1, "last", cantButtons - 1 === actualPage)
+      );
+
       document.querySelector("#paginate").innerHTML = buttons.join("");
     });
 };

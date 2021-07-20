@@ -1,26 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
+body {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  color: #2e2e3e;
+  height: 100vh;
+}
+
 * {
   margin: 0;
   padding: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 50vh;
+}
+
+table {
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 1.5em;
+  margin-top: 1em;
+  border-radius: 10px;
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.25);
+}
+
+thead {
+  text-align: left;
+}
+td {
+  color: #888;
+  padding: 0.25em 0 0.25em 0;
 }
 .container {
   width: 80%;
   margin: 0 auto;
 }
 .paginate {
+  margin-top: 1em;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.btn:not(:first-child) {
+  margin-left: 1em;
+}
 .btn {
+  display: flex;
+  height: 2.5em;
+  min-width: 2.5em;
+  justify-content: center;
+  align-items: center;
+  color: #2e2e3e;
   border: none;
   border-radius: 5px;
   padding: 0.5em 0.75em;
-  margin-left: 1em;
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.25);
 }
 .btn:not(:disabled) {
-  background-color: #5ad;
+  cursor: pointer;
+  background-color: hsl(229, 60%, 67%);
   transition: all 0.25s;
 }
 .btn:not(:disabled):hover {
-  background-color: #adf;
+  transform: translate(0, -5px);
+  background-color: hsl(229, 60%, 75%);
+}
+.btn:disabled {
+  opacity: 0.75;
 }

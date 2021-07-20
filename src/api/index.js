@@ -17,7 +17,7 @@ require("./db/index");
 const app = express();
 
 // Middlewares
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors());
 
 app.use(morgan("dev"));
 app.use(express.json());

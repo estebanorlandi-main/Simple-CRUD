@@ -14,15 +14,18 @@ Router.post("/", (req, res) => {
 Router.get("/list/:id?", async (req, res) => {
   const page = parseInt(req.params.id);
 
+  const productLimit = 1;
+
   const products = await Product.find()
-    .skip(page ? page * 5 : 0)
-    .limit(5);
+    .skip(page ? page * productLimit : 0)
+    .limit(productLimit);
 
+  // Paginate
   const countProducts = await Product.find();
-
   const paginate = {
     actualPage: page,
-    numOfProducts: countProducts.length,
+    totalProducts: countProducts.length,
+    limit: productLimit,
   };
 
   return res.json({ products: products, paginate });
