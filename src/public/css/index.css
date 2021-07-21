@@ -109,3 +109,7 @@ body {
 .no-shadow {
   box-shadow: none;
 }
+
+.t-right {
+  text-align: right;
+}

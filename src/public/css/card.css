@@ -14,6 +14,7 @@
   background: #fff !important;
   padding: 1em;
   box-shadow: 0 0.5em 1em hsla(0, 0%, 50%, 25%);
+  transition: all 0.25s;
 }
 .card__image {
   display: flex;
@@ -26,8 +27,7 @@
   opacity: 0.5;
   transition: opacity 0.25s;
 }
-.card__body,
-.card__image img {
+.card__body {
   height: 100%;
 }
 .card__body {
@@ -72,6 +72,10 @@
   font-size: 1.1rem;
 }
 
+.card:hover {
+  box-shadow: 0 0.75em 1em rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px);
+}
 .card:hover .card__image img {
   opacity: 1;
 }

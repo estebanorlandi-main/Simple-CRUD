@@ -88,6 +88,10 @@ const getProducts = (page = 0) => {
         buttonLimit
       );
 
+      document.getElementById("numProducts").innerHTML = `Products ${
+        limit * (actualPage + 1) - (limit - products.length)
+      } of ${totalProducts}`;
+
       document.querySelector("#paginate").innerHTML = buttons.join("");
     });
 };
