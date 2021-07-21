@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/form.css" />
     <link rel="stylesheet" href="css/card.css" />
     <link rel="stylesheet" href="css/paginate.css" />
+    <link rel="stylesheet" href="css/options.css" />
     <link rel="stylesheet" href="css/navbar.css" />
 
     <title>CRUD</title>
@@ -27,16 +28,32 @@
     <header>
       <nav>
         <a href="/" class="brand">Inicio</a>
+      </nav>
+    </header>
+    <div class="options">
+      <div class="container">
+        <form
+          id="searchForm"
+          class="form p-0"
+          style="background-color: rebeccapurple"
+        >
+          <div class="search__group">
+            <label for="search">
+              <i class="fas fa-search"></i>
+            </label>
+            <input type="text" id="search" placeholder="Search product." />
+          </div>
+        </form>
         <button id="openForm" class="btn no-shadow">
           <i class="fas fa-plus"></i>
           <span class="ml-1 d-flex align-center">New product</span>
         </button>
-      </nav>
-    </header>
+      </div>
+    </div>
 
     <div id="app">
       <div id="newFormProduct">
-        <form id="newProduct">
+        <form id="newProduct" class="form">
           <button type="reset" id="closeForm" class="btn simple danger f-right">
             <i class="fas fa-times"></i>
           </button>
@@ -56,7 +73,7 @@
         </form>
       </div>
 
-      <h3 class="color-grey f-normal mb-1 f-size-1">Products</h3>
+      <h3 class="color-grey f-normal mb-1 f-size-3">Products</h3>
       <div id="products" class="products"></div>
       <div id="paginate" class="paginate"></div>
     </div>

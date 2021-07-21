@@ -1,0 +1,16 @@
+.options {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: #fff;
+  width: 100%;
+  box-shadow: 0 0.75em 1em hsla(0, 0%, 0%, 5%);
+  padding: 1em 0;
+  margin-bottom: 1em;
+}
+
+.options > .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

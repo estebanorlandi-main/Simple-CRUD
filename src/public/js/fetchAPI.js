@@ -1,9 +1,11 @@
 const API = "http://localhost:8080/api/product/";
 
-const createRow = ({ name, description, stock, price }) => {
-  return `<div class="card">
+const createRow = ({ name, description, stock, price }, i) => {
+  return `<div class="card" onclick="show('${name}')">
+  <div class="card__image">
+    <img src="https://picsum.photos/200/200?random=${i}">
+  </div>
   <div class="card__body">
-    <button onclick="editProduct('${name}')" class="btn simple card__edit"><i class="fas fa-pencil"></i> edit</button>
     <div class="card__text">
       <h5 class="name">${name}</h5>
       <p class="description">${description}</p>
@@ -55,9 +57,11 @@ const getProducts = (page = 0) => {
 
       // se recorre cada producto y se devuelve un string que contiene la fila
       // luego se usa join para transformar todo en texto y eliminar el array
+      let i = 0;
       const rows = products
         .map((prod) => {
-          return createRow(prod);
+          i++;
+          return createRow(prod, i);
         })
         .join("");
 
@@ -88,7 +92,7 @@ const getProducts = (page = 0) => {
     });
 };
 
-const editProduct = (productName) => {
+const show = (productName) => {
   fetch(`${API}/${productName.replace(" ", "%20")}`)
     .then((res) => res.json())
     .then((data) => console.log(data));
