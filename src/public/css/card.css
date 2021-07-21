@@ -80,9 +80,6 @@
 }
 
 @media screen and (min-width: 68em) {
-  body {
-    background-color: rebeccapurple;
-  }
   .products {
     display: grid;
     grid-template-columns: repeat(4, minmax(100px, 1fr));
