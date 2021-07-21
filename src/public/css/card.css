@@ -48,7 +48,11 @@
   font-size: 0.8rem;
 }
 .description {
+  height: 3em;
   font-size: 0.75rem;
+  line-height: 1.5em;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .stock span {
@@ -56,4 +60,33 @@
 }
 .price {
   font-size: 1.1rem;
+}
+
+@media screen and (min-width: 30em) {
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    grid-gap: 0.5em;
+    grid-auto-rows: minmax(100px, auto);
+  }
+}
+@media screen and (min-width: 54em) {
+  .products {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    grid-gap: 0.5em;
+    grid-auto-rows: minmax(100px, auto);
+  }
+}
+
+@media screen and (min-width: 68em) {
+  body {
+    background-color: rebeccapurple;
+  }
+  .products {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    grid-gap: 0.5em;
+    grid-auto-rows: minmax(100px, auto);
+  }
 }
