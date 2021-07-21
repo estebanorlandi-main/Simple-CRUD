@@ -1,11 +1,13 @@
 const Router = require("express").Router();
 const Product = require("../Schemas/Product");
 
-Router.post("/", (req, res) => {
+Router.post("/", async (req, res) => {
   const { name, description, price, stock } = req.body;
 
-  const newProduct = new Product({ name, description, price, stock });
+  const exist = await Product.findOne({ name });
+  if (exist) return res.json({ status: "Project exist" });
 
+  const newProduct = new Product({ name, description, price, stock });
   newProduct.save();
 
   return res.json({ status: "saved" });
@@ -32,11 +34,13 @@ Router.get("/list/:id?", async (req, res) => {
 });
 
 Router.get("/:id", async (req, res) => {
-  const _id = req.params.id;
+  const name = req.params.id;
 
-  const products = await Product.find({ _id });
+  console.log(name);
 
-  return res.json({ products: products });
+  const product = await Product.findOne({ name });
+
+  return res.json({ product });
 });
 
 Router.put("/update", (req, res) => {

@@ -5,18 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="http://localhost:8080/" />
+
+    <link
+      rel="preload"
+      onload='this.rel="stylesheet"'
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+      as="style"
+    />
+
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/form.css" />
     <link rel="stylesheet" href="css/table.css" />
     <link rel="stylesheet" href="css/paginate.css" />
     <link rel="stylesheet" href="css/navbar.css" />
 
-    <link
-      rel="stylesheet"
-      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-      crossorigin="anonymous"
-    />
     <title>CRUD</title>
   </head>
   <body>
@@ -25,6 +29,7 @@
         <a href="/" class="brand">Inicio</a>
         <button id="openForm" class="btn no-shadow">
           <i class="fas fa-plus"></i>
+          <span class="ml-1 d-flex align-center">New product</span>
         </button>
       </nav>
     </header>

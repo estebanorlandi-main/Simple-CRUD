@@ -3,7 +3,7 @@ const API = "http://localhost:8080/api/product/";
 const createRow = ({ name, description, stock, price }) => {
   return `<div class="card">
   <div class="card__body">
-    <button class="btn simple card__edit"><i class="fas fa-pencil"></i> edit</button>
+    <button onclick="editProduct('${name}')" class="btn simple card__edit"><i class="fas fa-pencil"></i> edit</button>
     <div class="card__text">
       <h5 class="name">${name}</h5>
       <p class="description">${description}</p>
@@ -25,7 +25,7 @@ const createButton = (pageNumber, text, isActive) => {
     return `<button class="btn" disabled>${text}</button>`;
   }
 
-  return `<button class="btn" onclick="fetchAll(${pageNumber})">
+  return `<button class="btn" onclick="getProducts(${pageNumber})">
   ${text}
   </button>`;
 };
@@ -45,7 +45,7 @@ const Paginate = (first, prev, actual, next, last, limit) => {
   ];
 };
 
-const fetchAll = (page = 0) => {
+const getProducts = (page = 0) => {
   fetch(`${API}list/${page}`)
     .then((res) => res.json())
     .then((data) => {
@@ -88,8 +88,16 @@ const fetchAll = (page = 0) => {
     });
 };
 
+const editProduct = (productName) => {
+  fetch(`${API}/${productName.replace(" ", "%20")}`)
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+};
+
 // Se llama apenas carga la pagina
-fetchAll();
+getProducts();
+
+// Listeners
 
 const formProduct = document.getElementById("newProduct");
 

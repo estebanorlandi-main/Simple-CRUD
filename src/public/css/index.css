@@ -25,12 +25,23 @@ body {
   width: 80%;
   margin: 0 auto;
 }
-
+.d-flex {
+  display: flex;
+}
+.align-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: space-around;
+}
 .f-normal {
   font-weight: normal;
 }
 .mb-1 {
   margin-bottom: 0.25em;
+}
+.ml-1 {
+  margin-left: 0.25em;
 }
 .f-size-1 {
   font-size: 0.75rem;
@@ -80,6 +91,7 @@ body {
   box-shadow: none;
   color: #f00;
 }
-.btn.no-shadow {
+
+.no-shadow {
   box-shadow: none;
 }
