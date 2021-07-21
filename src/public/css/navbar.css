@@ -1,0 +1,14 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  background-color: #fff;
+  margin: 0 0 1em 0;
+}
+
+.brand {
+  color: hsl(229, 60%, 67%);
+  font-size: 1.25rem;
+  text-decoration: none;
+}

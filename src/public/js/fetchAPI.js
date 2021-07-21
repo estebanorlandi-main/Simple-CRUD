@@ -1,10 +1,23 @@
+const API = "http://localhost:8080/api/product/";
+
 const createRow = ({ name, description, stock, price }) => {
-  return `<tr>
-        <td>${name}</td>
-        <td>${description}</td>
-        <td>${stock}</td>
-        <td>${price}</td>
-    </tr>`;
+  return `<div class="card">
+  <div class="card__body">
+    <button class="btn simple card__edit"><i class="fas fa-pencil"></i> edit</button>
+    <div class="card__text">
+      <h5 class="name">${name}</h5>
+      <p class="description">${description}</p>
+    </div>
+    <div class="card__data">
+      <div class="price">
+      $ ${price}
+      </div>
+      <div class="stock">
+        <i class="fas fa-box-open"></i><span>${stock}</span>
+      </div>
+    </div>
+  </div>
+  </div>`;
 };
 
 const createButton = (pageNumber, text, isActive) => {
@@ -33,7 +46,7 @@ const Paginate = (first, prev, actual, next, last, limit) => {
 };
 
 const fetchAll = (page = 0) => {
-  fetch(`http://localhost:8080/api/product/list/${page}`)
+  fetch(`${API}list/${page}`)
     .then((res) => res.json())
     .then((data) => {
       // la informacion recivida se guarda en un estilo {indice: objeto producto}
@@ -77,3 +90,41 @@ const fetchAll = (page = 0) => {
 
 // Se llama apenas carga la pagina
 fetchAll();
+
+const formProduct = document.getElementById("newProduct");
+
+formProduct.addEventListener("submit", (e) => {
+  const data = new FormData(formProduct);
+
+  const req = {
+    name: data.get("Name"),
+    description: data.get("Description"),
+    stock: data.get("Stock"),
+    price: data.get("Price"),
+  };
+
+  fetch(`${API}`, {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(req),
+  })
+    .then((res) => res.json())
+    .then((data) => alert(data.status));
+
+  e.preventDefault();
+  e.stopPropagation();
+});
+
+document.getElementById("openForm").addEventListener("click", () => {
+  document.body.style.maxHeight = "100vh";
+  document.body.style.overflow = "hidden";
+
+  document.getElementById("newFormProduct").style.display = "flex";
+});
+
+document.getElementById("closeForm").addEventListener("click", () => {
+  document.body.style.maxHeight = "100%";
+  document.body.style.overflow = "auto";
+
+  document.getElementById("newFormProduct").style.display = "none";
+});
