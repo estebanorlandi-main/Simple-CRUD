@@ -1,20 +1,20 @@
 const API = "http://localhost:8080/api/product/";
 
-const createRow = ({ name, description, stock, price }, i) => {
-  return `<div class="card" onclick="show('${name}')">
+const createCard = ({ name, description, stock, price }, i) => {
+  return `<div class="card bg-white p-4" onclick="show('${name}')">
   <div class="card__image">
     <img src="https://picsum.photos/200/200?random=${i}">
   </div>
   <div class="card__body">
     <div class="card__text">
-      <h5 class="name">${name}</h5>
-      <p class="description">${description}</p>
+      <h5 class="f-size-2 c-grey">${name}</h5>
+      <p class="description f-size-2 c-grey">${description}</p>
     </div>
-    <div class="card__data">
-      <div class="price">
+    <div class="card__data mt-4">
+      <div class="f-size-4 f-bold c-dark">
       $ ${price}
       </div>
-      <div class="stock">
+      <div class="stock f-size-2 c-grey">
         <i class="fas fa-box-open"></i><span>${stock}</span>
       </div>
     </div>
@@ -61,7 +61,7 @@ const getProducts = (page = 0) => {
       const rows = products
         .map((prod) => {
           i++;
-          return createRow(prod, i);
+          return createCard(prod, i);
         })
         .join("");
 
