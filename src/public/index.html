@@ -16,63 +16,13 @@
     />
 
     <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/form.css" />
     <link rel="stylesheet" href="css/card.css" />
     <link rel="stylesheet" href="css/paginate.css" />
-    <link rel="stylesheet" href="css/options.css" />
-    <link rel="stylesheet" href="css/navbar.css" />
 
     <title>CRUD</title>
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="/" class="brand">Inicio</a>
-      </nav>
-    </header>
-    <div class="options">
-      <div class="container">
-        <form
-          id="searchForm"
-          class="form p-0"
-          style="background-color: rebeccapurple"
-        >
-          <div class="search__group">
-            <label for="search">
-              <i class="fas fa-search"></i>
-            </label>
-            <input type="text" id="search" placeholder="Search product." />
-          </div>
-        </form>
-        <button id="openForm" class="btn no-shadow">
-          <i class="fas fa-plus"></i>
-          <span class="ml-1 d-flex align-center">New product</span>
-        </button>
-      </div>
-    </div>
-
     <div id="app">
-      <div id="newFormProduct">
-        <form id="newProduct" class="form">
-          <button type="reset" id="closeForm" class="btn simple danger f-right">
-            <i class="fas fa-times"></i>
-          </button>
-          <label> Name </label>
-          <input name="Name" type="text" required />
-
-          <label> Description </label>
-          <textarea name="Description" required></textarea>
-
-          <label> Stock </label>
-          <input name="Stock" type="number" required />
-
-          <label> Price </label>
-          <input name="Price" type="number" required />
-
-          <button type="submit" class="btn">Submit</button>
-        </form>
-      </div>
-
       <h3 id="numProducts" class="color-grey f-normal mb-1 f-size-3 t-right">
         Products
       </h3>
