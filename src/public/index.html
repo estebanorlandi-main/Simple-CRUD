@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="http://localhost:8080/" />
+
+    <base href="http://localhost:8080" />
 
     <link
       rel="preload"
@@ -15,21 +16,31 @@
       as="style"
     />
 
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/card.css" />
-    <link rel="stylesheet" href="css/paginate.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/card.css" />
+    <link rel="stylesheet" href="/css/paginate.css" />
 
     <title>CRUD</title>
   </head>
   <body>
-    <div id="app">
-      <h3 id="numProducts" class="m-4 c-grey f-normal f-size-3 t-right">
-        Products
-      </h3>
-      <div id="products" class="products p-4"></div>
-      <div id="paginate" class="paginate"></div>
-    </div>
+    <header class="pos-sticky top-0 z-9999 bg-white shadow-soft">
+      <nav class="container d-flex j-between a-center p-4">
+        <a class="f-bold c-primary" href="#">Inicio</a>
+        <a class="h-auto btn no-shadow" href="/create.html">
+          <i class="fas fa-plus mr-4"></i> New Product
+        </a>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <h1 class="p-4 c-dark">Products</h1>
+        <p id="numProducts" class="ml-4 pl-4 c-grey f-normal f-size-2"></p>
+        <div id="products" class="products p-4"></div>
+        <div id="paginate" class="paginate"></div>
+      </section>
+    </main>
 
-    <script src="js/fetchAPI.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/fetchAPI.js"></script>
   </body>
 </html>
