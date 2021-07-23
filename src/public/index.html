@@ -26,12 +26,55 @@
     <header class="pos-sticky top-0 z-9999 bg-white shadow-soft">
       <nav class="container d-flex j-between a-center p-4">
         <a class="f-bold c-primary" href="#">Inicio</a>
-        <a class="h-auto btn no-shadow" href="/create.html">
-          <i class="fas fa-plus mr-4"></i> New Product
-        </a>
+        <ul class="d-flex a-center">
+          <li>
+            <input
+              class="mr-4"
+              name="search"
+              id="search"
+              type="text"
+              placeholder="Search..."
+            />
+          </li>
+          <li>
+            <button id="openForm" class="h-auto btn no-shadow">
+              <i class="fas fa-plus mr-4"></i> New Product
+            </button>
+          </li>
+        </ul>
       </nav>
     </header>
     <main>
+      <div
+        id="newProductContainer"
+        class="form-container pos-fixed top-0 d-none j-center a-center z-9999"
+      >
+        <form id="newProduct" class="p-4 w-min bg-white">
+          <h2 class="mb-4">New Product</h2>
+          <div class="form__group">
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Product name..." />
+          </div>
+          <div class="form__group">
+            <label for="description">Description</label>
+            <textarea
+              name="description"
+              id="description"
+              placeholder="This is my product description..."
+            ></textarea>
+          </div>
+          <div class="form__group">
+            <label for="stock">Stock</label>
+            <input id="stock" type="number" max="9999" placeholder="1000" />
+          </div>
+          <div class="form__group">
+            <label for="price">Price <i class="fas"></i></label>
+            <input id="price" type="number" max="9999" placeholder="1000" />
+          </div>
+          <button class="btn mt-4 w-100" type="submit">Submit</button>
+        </form>
+      </div>
+
       <section>
         <h1 class="p-4 c-dark">Products</h1>
         <p id="numProducts" class="ml-4 pl-4 c-grey f-normal f-size-2"></p>

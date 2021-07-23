@@ -8,29 +8,33 @@
     <title>New product</title>
   </head>
   <body>
-    <form class="pos-abs z-9999 p-4 mx-auto mt-4 w-min">
-      <h2 class="mb-4">New Product</h2>
-      <div class="form__group">
-        <label for="name">Name</label>
-        <input id="name" type="text" />
-      </div>
-
-      <div class="form__group">
-        <label for="description">Description</label>
-        <textarea name="description" id="description"></textarea>
-      </div>
-
-      <div class="form__group">
-        <label for="stock">Stock</label>
-        <input id="stock" type="number" max="9999" />
-      </div>
-
-      <div class="form__group">
-        <label for="price">Price</label>
-        <input id="price" type="number" max="9999" />
-      </div>
-
-      <button class="btn mt-4" type="submit">Submit</button>
-    </form>
+    <div
+      class="form-container pos-abs d-flex j-center a-center z-9999 bg-white"
+    >
+      <form class="p-4 mt-4 w-min">
+        <h2 class="mb-4">New Product</h2>
+        <div class="form__group">
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Product name..." />
+        </div>
+        <div class="form__group">
+          <label for="description">Description</label>
+          <textarea
+            name="description"
+            id="description"
+            placeholder="Product description..."
+          ></textarea>
+        </div>
+        <div class="form__group">
+          <label for="stock">Stock</label>
+          <input id="stock" type="number" max="9999" placeholder="Stock..." />
+        </div>
+        <div class="form__group">
+          <label for="price">Price <i class="fas"></i></label>
+          <input id="price" type="number" max="9999" placeholder="Price..." />
+        </div>
+        <button class="btn mt-4 w-100" type="submit">Submit</button>
+      </form>
+    </div>
   </body>
 </html>

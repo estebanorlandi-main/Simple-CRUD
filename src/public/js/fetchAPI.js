@@ -1,7 +1,7 @@
 const API = "http://localhost:8080/api/product/";
 
 const createCard = ({ name, description, stock, price }) => {
-  return `<div class="card bg-white p-4" onclick="show('${name}')">
+  return `<div class="card bg-white p-4" onclick="seeProduct('${name}')">
     <div class="card__image">
       <img src="https://picsum.photos/200/200">
     </div>
@@ -57,7 +57,6 @@ const getProducts = (page = 0) => {
 
       // se recorre cada producto y se devuelve un string que contiene la fila
       // luego se usa join para transformar todo en texto y eliminar el array
-      let i = 0;
       const cards = products.map((prod) => createCard(prod)).join("");
 
       // se busca el id products para imprimir las columnas
@@ -89,7 +88,7 @@ const getProducts = (page = 0) => {
     });
 };
 
-const show = (productName) => {
+const seeProduct = (productName) => {
   fetch(`${API}/${productName.replace(" ", "%20")}`)
     .then((res) => res.json())
     .then((data) => console.log(data));
@@ -97,3 +96,40 @@ const show = (productName) => {
 
 // Se llama apenas carga la pagina
 getProducts();
+
+const unlockHeight = (element) => {
+  element.style.maxHeight = "auto";
+  element.style.overflowY = "scroll";
+};
+const blockHeight = (element) => {
+  element.style.maxHeight = "auto";
+  element.style.overflowY = "hidden";
+};
+
+window.addEventListener("mouseup", (e) => {
+  if (
+    !$("#newProduct").is(e.target) &&
+    !$("#newProduct").has(e.target).length
+  ) {
+    unlockHeight(document.body);
+    $("#newProductContainer").css("display", "none");
+  }
+});
+
+$("#openForm").click(() => {
+  blockHeight(document.body);
+  $("#newProductContainer").css("display", "flex");
+});
+
+$("#search").keyup((e) => {
+  let key = e.keyCode || e.which;
+  if (key === 13) {
+    fetch(API + "search/" + $("#search").val() + `0`)
+      .then((res) => res.json())
+      .then((data) => {
+        const products = Object.values(data.products).map((val) => val);
+        const cards = products.map((prod) => createCard(prod)).join("");
+        $("#products").html(cards);
+      });
+  }
+});

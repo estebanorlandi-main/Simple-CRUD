@@ -33,6 +33,29 @@ Router.get("/list/:id?", async (req, res) => {
   return res.json({ products: products, paginate });
 });
 
+Router.get("/search/:name/:page?", async (req, res) => {
+  const name = req.params.name;
+  const page = parseInt(req.params.page);
+
+  const productLimit = 50;
+
+  const q = name.length ? new RegExp(name) : "";
+
+  const products = await Product.find({ name: q })
+    .skip(page ? page * productLimit : 0)
+    .limit(productLimit);
+
+  // Paginate
+  const countProducts = await Product.find();
+  const paginate = {
+    actualPage: page,
+    totalProducts: countProducts.length,
+    limit: productLimit,
+  };
+
+  return res.json({ products: products, paginate });
+});
+
 Router.get("/:id", async (req, res) => {
   const name = req.params.id;
 

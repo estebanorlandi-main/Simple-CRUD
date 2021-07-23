@@ -18,7 +18,9 @@ body {
 a {
   text-decoration: none;
 }
-
+li {
+  list-style: none;
+}
 .container {
   width: 95%;
   margin: 0 auto;
@@ -44,7 +46,8 @@ a {
   color: #f0f0f0;
 }
 
-.btn:not(:disabled):hover {
+.btn:not(:disabled):hover,
+.btn:not(:disabled):focus {
   transform: translate(0, -5px);
 }
 
@@ -147,6 +150,9 @@ a {
 .pos-abs {
   position: absolute;
 }
+.pos-fixed {
+  position: fixed;
+}
 .top-0 {
   top: 0;
 }
@@ -158,21 +164,44 @@ a {
 }
 
 /* Form */
-.form {
-  display: flex;
-  flex-direction: column;
-  width: max-content;
+
+input,
+textarea {
+  outline: none;
+  border-radius: 5px;
+  padding: 0.25em 0.5em;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  font-family: "Poppins";
+  font-size: 0.65rem;
+  color: #2e2e3e;
+}
+
+.form-container {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .form__group:not(:first-child) {
   margin-top: 1em;
 }
+.form__group label {
+  display: block;
+  font-size: 0.8rem;
+  transition: all 0.25s;
+}
 .form__group > input,
 textarea {
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
+  width: 15em;
 }
 textarea {
   resize: vertical;
+}
+input:focus,
+textarea:focus {
+  border: 2px solid #5af;
+}
+.form__group:focus-within > label {
+  transform: translate(0, -5px);
 }
 
 /* Height */
@@ -198,13 +227,16 @@ textarea {
 .d-block {
   display: block;
 }
+.d-none {
+  display: none;
+}
 
 /* Flex */
 .a-center {
   align-items: center;
 }
 .j-center {
-  justify-content: space-center;
+  justify-content: center;
 }
 .j-between {
   justify-content: space-between;
