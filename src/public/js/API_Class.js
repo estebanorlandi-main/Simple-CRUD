@@ -10,9 +10,12 @@ class API {
     const fetch_data = JSON.parse(
       await (await fetch(this.URL + "list/" + page)).text()
     );
+
     const products = fetch_data.products;
     const cards = products.map((prod) => Card(prod)).join("");
-    $(inID).html(cards);
+
+    document.getElementById(inID).innerHTML = cards;
+
     Paginate(fetch_data.paginate, products.length);
   }
 
@@ -23,7 +26,7 @@ class API {
 
     const products = fetch_data.products;
     const cards = products.map((prod) => Card(prod)).join("");
-    $(inID).html(cards);
+    document.getElementById(inID).html(cards);
   }
 }
 

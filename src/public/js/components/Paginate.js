@@ -30,11 +30,11 @@ const Paginate = ({ actualPage, totalProducts, limit }, perPage) => {
     buttonLimit
   );
 
-  $("#numProducts").text(
-    `${limit * (actualPage + 1) - (limit - perPage)} of ${totalProducts}`
-  );
+  document.getElementById("numProducts").innerText = `${
+    limit * (actualPage + 1) - (limit - perPage)
+  } of ${totalProducts}`;
 
-  $("#paginate").html(buttons.join(""));
+  document.getElementById("paginate").innerHTML = buttons.join("");
 };
 
 export default Paginate;
