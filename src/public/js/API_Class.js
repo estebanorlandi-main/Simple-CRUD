@@ -1,15 +1,31 @@
 import Card from "./components/Card.js";
 
 class API {
-  constructor(URL, ID) {
+  constructor(URL, ID, actualButton) {
     this.URL = URL;
     this.container = ID;
+    this.actualButton = actualButton;
+    this.searchValue = "";
+
+    this.page = 0;
+    this.totalPages = 0;
+
+    this.getProducts(this.page);
   }
 
-  async getAll(page = 0) {
-    const fetch_data = JSON.parse(
-      await (await fetch(this.URL + "list/" + page)).text()
-    );
+  async getProducts() {
+    let fetch_data;
+    if (this.searchValue.length === 0) {
+      fetch_data = JSON.parse(
+        await (await fetch(this.URL + "list/" + this.page)).text()
+      );
+    } else {
+      fetch_data = JSON.parse(
+        await (
+          await fetch(this.URL + `search/${this.searchValue}/${this.page}`)
+        ).text()
+      );
+    }
 
     const products = fetch_data.products;
     const cards = products.map((prod) => Card(prod)).join("");
@@ -18,33 +34,47 @@ class API {
 
     const { actualPage, totalProducts, perPage } = fetch_data.paginate;
 
+    this.totalPages = Math.floor(totalProducts / perPage);
+
     const showedProducts =
       totalProducts - (totalProducts - actualPage * perPage - products.length);
 
     document.getElementById(
       "numProducts"
     ).innerHTML = `${showedProducts} of ${totalProducts}`;
+
+    this.actualButton.innerHTML = this.page + 1;
   }
 
-  async search(page = 0, value, inID) {
-    if (!value) return this.getAll();
-    const fetch_data = JSON.parse(
-      await (await fetch(this.URL + `search/${value}/${page}`)).text()
-    );
+  async search(value) {
+    if (value.length !== 0) this.searchValue = value;
+    else this.searchValue = "";
+    this.getProducts();
+  }
 
-    const products = fetch_data.products;
-    const cards = products.map((prod) => Card(prod)).join("");
-
-    document.getElementById(inID).innerHTML = cards;
-
-    const { actualPage, totalProducts, perPage } = fetch_data.paginate;
-
-    const showedProducts =
-      totalProducts - (totalProducts - actualPage * perPage - products.length);
-
-    document.getElementById(
-      "numProducts"
-    ).innerHTML = `${showedProducts} of ${totalProducts}`;
+  firstPage() {
+    if (this.page !== 0) {
+      this.page = 0;
+      this.getProducts();
+    }
+  }
+  prevPage() {
+    if (this.page > 0) {
+      this.page -= 1;
+      this.getProducts();
+    }
+  }
+  nextPage() {
+    if (this.page < this.totalPages) {
+      this.page += 1;
+      this.getProducts();
+    }
+  }
+  lastPage() {
+    if (this.page !== this.totalPages) {
+      this.page = this.totalPages;
+      this.getProducts();
+    }
   }
 }
 
