@@ -26,7 +26,8 @@ class API {
 
     const products = fetch_data.products;
     const cards = products.map((prod) => Card(prod)).join("");
-    document.getElementById(inID).html(cards);
+
+    document.getElementById(inID).innerHTML = cards;
   }
 }
 
