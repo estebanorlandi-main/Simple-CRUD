@@ -30,7 +30,7 @@ Router.get("/list/:id?", async (req, res) => {
     limit: productLimit,
   };
 
-  return res.json({ products: products, paginate });
+  return res.json({ products, paginate });
 });
 
 Router.get("/search/:name/:page?", async (req, res) => {
@@ -46,14 +46,14 @@ Router.get("/search/:name/:page?", async (req, res) => {
     .limit(productLimit);
 
   // Paginate
-  const countProducts = await Product.find();
+  const countProducts = await Product.find({ name: q });
   const paginate = {
     actualPage: page,
     totalProducts: countProducts.length,
     limit: productLimit,
   };
 
-  return res.json({ products: products, paginate });
+  return res.json({ products, paginate });
 });
 
 Router.get("/:id", async (req, res) => {
