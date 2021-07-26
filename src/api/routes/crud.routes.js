@@ -27,7 +27,7 @@ Router.get("/list/:id?", async (req, res) => {
   const paginate = {
     actualPage: page,
     totalProducts: countProducts.length,
-    limit: productLimit,
+    perPage: productLimit,
   };
 
   return res.json({ products, paginate });
@@ -50,7 +50,7 @@ Router.get("/search/:name/:page?", async (req, res) => {
   const paginate = {
     actualPage: page,
     totalProducts: countProducts.length,
-    limit: productLimit,
+    perPage: productLimit,
   };
 
   return res.json({ products, paginate });
