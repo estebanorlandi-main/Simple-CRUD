@@ -7,11 +7,7 @@ const buttons = {
   next: $("#next"),
   last: $("#last"),
 };
-window.api = new API(
-  "http://localhost:8080/api/product/",
-  "products",
-  buttons.actual[0]
-);
+window.api = new API("http://localhost:8080/api/product/", "products", buttons);
 
 $("#search").keyup((e) => {
   api.firstPage();

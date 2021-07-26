@@ -4,7 +4,7 @@ class API {
   constructor(URL, ID, actualButton) {
     this.URL = URL;
     this.container = ID;
-    this.actualButton = actualButton;
+    this.buttons = actualButton;
     this.searchValue = "";
 
     this.page = 0;
@@ -43,7 +43,14 @@ class API {
       "numProducts"
     ).innerHTML = `${showedProducts} of ${totalProducts}`;
 
-    this.actualButton.innerHTML = this.page + 1;
+    // Paginate Buttons
+    this.buttons.prev[0].disabled = this.page === 0;
+    this.buttons.first[0].disabled = this.page === 0;
+
+    this.buttons.actual[0].innerHTML = this.page + 1;
+
+    this.buttons.next[0].disabled = this.page === this.totalPages;
+    this.buttons.last[0].disabled = this.page === this.totalPages;
   }
 
   async search(value) {
