@@ -9,5 +9,5 @@ mongoose.connect(config.URI, {
 });
 
 db.once("open", () => {
-  console.log(`DB connection started on ${config.URI}`);
+  console.log(`DB open on ${config.URI}`);
 });
