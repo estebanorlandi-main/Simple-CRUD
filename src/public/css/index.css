@@ -37,10 +37,10 @@ li {
   border-radius: 5px;
   padding: 0.5em 0.75em;
   box-shadow: 0 0.5em 1em var(--primary-soft);
-  transition: all 0.25s;
 }
 
 .btn:not(:disabled) {
+  transition: all 0.25s;
   cursor: pointer;
   background-color: var(--primary);
   color: #f0f0f0;

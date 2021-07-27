@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/css/paginate.css" />
 
     <script src="./js/jquery-3.6.0.min.js"></script>
-    <script src="./js/fetchAPI.js" type="module"></script>
+    <script src="./js/index.js" type="module"></script>
 
     <title>CRUD</title>
   </head>
@@ -78,7 +78,10 @@
         </form>
       </div>
 
-      <section>
+      <section class="">
+        <h1 class="p-4 c-dark">Products</h1>
+        <p id="numProducts" class="ml-4 pl-4 c-grey f-normal f-size-2"></p>
+        <div id="products" class="products p-4"></div>
         <div id="paginate" class="paginate">
           <button id="first" class="btn">First</button>
           <button id="prev" class="btn">Previous</button>
@@ -86,9 +89,6 @@
           <button id="next" class="btn">Next</button>
           <button id="last" class="btn">Last</button>
         </div>
-        <h1 class="p-4 c-dark">Products</h1>
-        <p id="numProducts" class="ml-4 pl-4 c-grey f-normal f-size-2"></p>
-        <div id="products" class="products p-4"></div>
       </section>
     </main>
   </body>

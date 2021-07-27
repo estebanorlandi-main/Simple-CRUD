@@ -10,6 +10,8 @@ class API {
     this.page = 0;
     this.totalPages = 0;
 
+    this.products = [];
+
     this.getProducts(this.page);
   }
 
@@ -27,10 +29,9 @@ class API {
       );
     }
 
-    const products = fetch_data.products;
-    const cards = products.map((prod) => Card(prod)).join("");
+    const products = fetch_data.products.map((prod) => Card(prod));
 
-    document.getElementById(this.container).innerHTML = cards;
+    document.getElementById(this.container).innerHTML = products.join("");
 
     const { actualPage, totalProducts, perPage } = fetch_data.paginate;
 
@@ -42,18 +43,9 @@ class API {
     document.getElementById(
       "numProducts"
     ).innerHTML = `${showedProducts} of ${totalProducts}`;
-
-    // Paginate Buttons
-    this.buttons.prev[0].disabled = this.page === 0;
-    this.buttons.first[0].disabled = this.page === 0;
-
-    this.buttons.actual[0].innerHTML = this.page + 1;
-
-    this.buttons.next[0].disabled = this.page === this.totalPages;
-    this.buttons.last[0].disabled = this.page === this.totalPages;
   }
 
-  async search(value) {
+  search(value) {
     if (value.length !== 0) this.searchValue = value;
     else this.searchValue = "";
     this.getProducts();
@@ -82,6 +74,10 @@ class API {
       this.page = this.totalPages;
       this.getProducts();
     }
+  }
+
+  getPages() {
+    return { actual: this.page, total: this.totalPages };
   }
 }
 

@@ -1,5 +1,5 @@
 const createCard = ({ name, description, stock, price }) => {
-  return `<div class="card bg-white p-4" onclick="seeProduct('${name}')">
+  return `<div class="card bg-white p-4">
         <div class="card__image">
           <img src="https://picsum.photos/200/200">
         </div>

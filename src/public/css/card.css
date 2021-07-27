@@ -1,6 +1,6 @@
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20em, auto));
   gap: 2em;
 }
 
@@ -26,6 +26,7 @@
 }
 .card__body {
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
