@@ -79,6 +79,8 @@ class API {
   getPages() {
     return { actual: this.page, total: this.totalPages };
   }
+
+  create() {}
 }
 
 export default API;

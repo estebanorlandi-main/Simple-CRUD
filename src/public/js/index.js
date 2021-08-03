@@ -26,7 +26,14 @@ $("#search").keyup((e) => {
   changeButtons();
 });
 
-// console.log(api.get());
+$("#openForm").click((e) => {
+  $("#newProductContainer").show();
+});
+$("#newProduct").submit((e) => {
+  e.stopPropagation();
+  e.preventDefault();
+  console.log(new FormData($("#newProduct").target).getAll("name"));
+});
 
 buttons.first.click((e) => {
   api.firstPage();
