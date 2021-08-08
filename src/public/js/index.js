@@ -29,10 +29,14 @@ $("#search").keyup((e) => {
 $("#openForm").click((e) => {
   $("#newProductContainer").show();
 });
+
 $("#newProduct").submit((e) => {
   e.stopPropagation();
   e.preventDefault();
-  console.log(new FormData($("#newProduct").target).getAll("name"));
+  let data = new FormData(document.getElementById("newProduct")).map(
+    (val) => val
+  );
+  console.log(data);
 });
 
 buttons.first.click((e) => {
