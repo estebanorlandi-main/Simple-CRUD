@@ -36,7 +36,6 @@ $("#newProduct").submit((e) => {
   let data = new FormData(document.getElementById("newProduct")).map(
     (val) => val
   );
-  console.log(data);
 });
 
 buttons.first.click((e) => {
